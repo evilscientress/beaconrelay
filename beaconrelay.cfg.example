@@ -1,0 +1,15 @@
+[icinga]
+address=https://icingahost.example.com:5665
+user=beaconrelay
+password=correct horse battery staple
+
+[mqtt]
+hostname=iot.eclipse.org
+port=8883 #optional defaults to 1883 for non tls and 8883 for tls
+tls=True # optional defaults to False
+user=mqttuser
+password=mqttpassword
+
+[relay]
+resendinterval=300 # OPTIONAL: interval, in seconds, between mqtt messages of the same type, defaults to 300
+pollinterval=5 # OPTIONAL: interval, in seconds, between polling the icinga server, defaults to 5
