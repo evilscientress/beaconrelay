@@ -81,13 +81,10 @@ def sendstate(state):
 try:
     while True:
         problems = get_unacknowledged_problems()
-        print('problems:')
-        pprint(problems)
         if not problems or len(problems) == 0:
             sendstate('ok')
         else:
             states = {int(service['attrs']['state']) for service in problems}
-            print('states: %s' % str(states))
             if 2 in states:
                 sendstate('critical')
             elif 1 in states:
