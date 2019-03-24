@@ -14,7 +14,7 @@ git clone https://github.com/evilscientress/beaconrelay.git
 cd beaconrelay
 virtualenv env
 . ./env/bin/activate
-pip install -r requierments.txt
+pip install -r requirements.txt
 ```
 
 ### Configuration
