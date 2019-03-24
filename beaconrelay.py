@@ -74,8 +74,8 @@ def sendstate(state):
     last_state = state
     last_send = time.time()
     mqtt.publish(glowcat_mode_topic, glowcat_modes[state])
-    mqtt.publish(notfiybeacon_mode_topic, notfiybeacon_modes[state])
     mqtt.publish(notfiybeacon_color_topic, notfiybeacon_colors[state])
+    mqtt.publish(notfiybeacon_mode_topic, notfiybeacon_modes[state])
 
 
 try:
