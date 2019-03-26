@@ -65,7 +65,7 @@ notfiybeacon_modes = {
 }
 notfiybeacon_color_topic = 'notifybeacon/all/cmd/color'
 notfiybeacon_colors = {
-    'ok': '#FF0095',
+    #'ok': '#FF0095',
     'warning': '#FF7300',
     'critical': '#FF0000',
 }
@@ -83,9 +83,12 @@ def sendstate(state):
     print('sending state %s' % state)
     last_state = state
     last_send = time.time()
-    mqtt.publish(glowcat_mode_topic, glowcat_modes[state])
-    mqtt.publish(notfiybeacon_color_topic, notfiybeacon_colors[state])
-    mqtt.publish(notfiybeacon_mode_topic, notfiybeacon_modes[state])
+    if state in glowcat_modes:
+        mqtt.publish(glowcat_mode_topic, glowcat_modes[state])
+    if state in notfiybeacon_colors:
+        mqtt.publish(notfiybeacon_color_topic, notfiybeacon_colors[state])
+    if state in notfiybeacon_modes:
+        mqtt.publish(notfiybeacon_mode_topic, notfiybeacon_modes[state])
 
 
 try:
