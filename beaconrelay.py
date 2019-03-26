@@ -12,8 +12,10 @@ def get_unacknowledged_problems():
     try:
         return icinga.objects.list(
             'Service',
-            filters='service.state!=0&&service.acknowledgement==0&&service.state_type==1',
-            attrs=['state', 'state_type', 'acknowledgement'],
+            filters='service.state != ServiceOK && service.downtime_depth == 0.0 '
+                    '&& service.acknowledgement == 0.0 && service.state_type == 1 '
+                    '&& service.last_reachable == true',
+            attrs=['state', 'state_type', 'downtime_depth', 'acknowledgement', 'last_reachable'],
         )
     except Icinga2ApiException as e:
         if e.upstream_error is None or e.upstream_error.get('error', 1) != 404:
