@@ -2,6 +2,9 @@
 address=https://icingahost.example.com:5665
 user=beaconrelay
 password=correct horse battery staple
+certificate=/path/to/certificate/for/client/auth
+key=/path/to/key/for/client/auth
+ca_certificate=/path/to/ca/certificate/for/server/validation
 
 [mqtt]
 hostname=iot.eclipse.org

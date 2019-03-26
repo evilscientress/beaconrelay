@@ -31,7 +31,15 @@ config = configparser.ConfigParser()
 config.read([os.environ.get('BEACONRELAY_CONFIG', 'beaconrelay.cfg')], encoding='utf-8')
 
 
-icinga = IcingaClient(config['icinga']['address'], config['icinga']['user'], config['icinga']['password'])
+icinga = IcingaClient(
+    url=config['icinga']['address'], 
+    username=config.get('icinga', 'user', fallback=None),
+    password=config.get('icinga', 'password', fallback=None),
+    certificate=config.get('icinga', 'certificate', fallback=None),
+    key=config.get('icinga', 'key', fallback=None),
+    ca_certificate=config.get('icinga', 'ca_certificate', fallback=None),
+
+)
 mqtt = mqtt_client.Client()
 mqtt.enable_logger()
 mqtt.on_connect = on_mqtt_connect
